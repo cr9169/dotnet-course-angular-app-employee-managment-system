@@ -9,7 +9,7 @@
           @if (errorMessage !== '') {
           <div class="alert alert-danger">{{ errorMessage }}</div>
           }
-          <form (ngSubmit)="onSubmit()">
+          <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
             <div class="form-group">
               <label for="firstName">First Name*</label>
               <input
@@ -95,7 +95,11 @@
               <div class="text-danger">Position Is Required</div>
               } }
             </div>
-            <button type="submit" class="btn btn-primary mt-3">
+            <button
+              [disabled]="employeeForm.invalid"
+              type="submit"
+              class="btn btn-primary mt-3"
+            >
               {{ isEditing ? "Update" : "Create" }}
             </button>
           </form>
