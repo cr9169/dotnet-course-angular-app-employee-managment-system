@@ -72,6 +72,8 @@
               @if (email.invalid && (email.dirty || email.touched)) { @if
               (email.errors?.["required"]) {
               <div class="text-danger">Email Is Required</div>
+              } @if (email.errors?.["email"]) {
+              <div class="text-danger">Email Is Invalid</div>
               } }
             </div>
             <div class="form-group">
