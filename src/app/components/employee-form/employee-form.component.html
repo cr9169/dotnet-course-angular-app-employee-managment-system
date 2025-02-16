@@ -27,7 +27,7 @@
               } }
             </div>
             <div class="form-group">
-              <label for="lastName">Last Name</label>
+              <label for="lastName">Last Name*</label>
               <input
                 #lastName="ngModel"
                 type="text"
@@ -43,7 +43,7 @@
               } }
             </div>
             <div class="form-group">
-              <label for="phoneNumber">Phone Number</label>
+              <label for="phoneNumber">Phone Number*</label>
               <input
                 #phoneNumber="ngModel"
                 type="tel"
@@ -59,7 +59,7 @@
               } }
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email">Email*</label>
               <input
                 #email="ngModel"
                 type="email"
@@ -68,16 +68,19 @@
                 [(ngModel)]="employee.email"
                 class="form-control"
                 required
+                email
               />
+
               @if (email.invalid && (email.dirty || email.touched)) { @if
-              (email.errors?.["required"]) {
-              <div class="text-danger">Email Is Required</div>
-              } @if (email.errors?.["email"]) {
-              <div class="text-danger">Email Is Invalid</div>
+              (email.errors?.['required']) {
+              <div class="text-danger">Email is required</div>
+              } @if (email.errors?.['email']) {
+              <div class="text-danger">Invalid email format</div>
               } }
             </div>
+
             <div class="form-group">
-              <label for="position">Position</label>
+              <label for="position">Position*</label>
               <input
                 #position="ngModel"
                 type="text"
