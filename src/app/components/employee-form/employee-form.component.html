@@ -11,8 +11,9 @@
           }
           <form (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <label for="firstName">First Name</label>
+              <label for="firstName">First Name*</label>
               <input
+                #firstName="ngModel"
                 type="text"
                 id="firstName"
                 name="firstName"
@@ -20,10 +21,15 @@
                 class="form-control"
                 required
               />
+              @if (firstName.invalid && (firstName.dirty || firstName.touched))
+              { @if (firstName.errors?.["required"]) {
+              <div class="text-danger">First Name Is Required</div>
+              } }
             </div>
             <div class="form-group">
               <label for="lastName">Last Name</label>
               <input
+                #lastName="ngModel"
                 type="text"
                 id="lastName"
                 name="lastName"
@@ -31,10 +37,15 @@
                 class="form-control"
                 required
               />
+              @if (lastName.invalid && (lastName.dirty || lastName.touched)) {
+              @if (lastName.errors?.["required"]) {
+              <div class="text-danger">Last Name Is Required</div>
+              } }
             </div>
             <div class="form-group">
               <label for="phoneNumber">Phone Number</label>
               <input
+                #phoneNumber="ngModel"
                 type="tel"
                 id="phoneNumber"
                 name="phoneNumber"
@@ -42,10 +53,15 @@
                 class="form-control"
                 required
               />
+              @if (phoneNumber.invalid && (phoneNumber.dirty ||
+              phoneNumber.touched)) { @if (phoneNumber.errors?.["required"]) {
+              <div class="text-danger">Phone Number Is Required</div>
+              } }
             </div>
             <div class="form-group">
               <label for="email">Email</label>
               <input
+                #email="ngModel"
                 type="email"
                 id="email"
                 name="email"
@@ -53,10 +69,15 @@
                 class="form-control"
                 required
               />
+              @if (email.invalid && (email.dirty || email.touched)) { @if
+              (email.errors?.["required"]) {
+              <div class="text-danger">Email Is Required</div>
+              } }
             </div>
             <div class="form-group">
               <label for="position">Position</label>
               <input
+                #position="ngModel"
                 type="text"
                 id="position"
                 name="position"
@@ -64,6 +85,10 @@
                 class="form-control"
                 required
               />
+              @if (position.invalid && (position.dirty || position.touched)) {
+              @if (position.errors?.["required"]) {
+              <div class="text-danger">Position Is Required</div>
+              } }
             </div>
             <button type="submit" class="btn btn-primary mt-3">
               {{ isEditing ? "Update" : "Create" }}
