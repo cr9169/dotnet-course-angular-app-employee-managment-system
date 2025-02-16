@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../../models/employee';
 import { catchError, finalize, of, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-table',
@@ -14,7 +15,10 @@ export class EmployeeTableComponent {
   isLoading: boolean = false;
   errorMessage: string = '';
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.fetchEmployees();
@@ -58,5 +62,24 @@ export class EmployeeTableComponent {
           console.error(`Subscription Error: ${err}`);
         },
       });
+  }
+
+  onDeleteEmployee(id: number) {
+    this.employeeService.deleteEmployee(id).subscribe({
+      next: (res) => {
+        console.log(`Successfully deleted employee with id: ${id}`);
+        this.employees = this.employees.filter(
+          (employee) => employee.id !== id
+        );
+      },
+      error: (err) => {
+        console.error(`An error occurred: ${err.message}`);
+        this.errorMessage = `An error occurred: ${err.status} ${err.message}`;
+      },
+    });
+  }
+
+  onEditEmployee(id: number) {
+    this.router.navigate(['/edit', id]);
   }
 }

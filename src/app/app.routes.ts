@@ -12,6 +12,10 @@ export const routes: Routes = [
     component: EmployeeFormComponent,
   },
   {
+    path: 'edit/:id',
+    component: EmployeeFormComponent,
+  },
+  {
     path: 'employees',
     redirectTo: '',
     pathMatch: 'full',

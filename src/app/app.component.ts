@@ -4,7 +4,7 @@ import { EmployeeTableComponent } from './components/employee-table/employee-tab
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, EmployeeTableComponent, RouterModule],
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

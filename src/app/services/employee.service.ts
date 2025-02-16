@@ -26,7 +26,7 @@ export class EmployeeService {
     );
   }
 
-  GetById(id: number): Observable<Employee> {
+  getById(id: number): Observable<Employee> {
     return this.httpClient
       .get<Employee>(`${this.apiConnectionString}/${id}`)
       .pipe(
@@ -37,7 +37,7 @@ export class EmployeeService {
       );
   }
 
-  AddEmployee(employee: Employee): Observable<Employee> {
+  addEmployee(employee: Employee): Observable<Employee> {
     return this.httpClient
       .post<Employee>(this.apiConnectionString, employee)
       .pipe(
@@ -48,18 +48,20 @@ export class EmployeeService {
       );
   }
 
-  DeleteEmployee(id: number): Observable<any> {
-    return this.httpClient.delete(`${this.apiConnectionString}/${id}`).pipe(
-      catchError((err: Error) => {
-        console.error(`An error occurred: ${err.message}`);
-        return throwError(() => err);
-      })
-    );
+  deleteEmployee(id: number): Observable<void> {
+    return this.httpClient
+      .delete<void>(`${this.apiConnectionString}/${id}`)
+      .pipe(
+        catchError((err: Error) => {
+          console.error(`An error occurred: ${err.message}`);
+          return throwError(() => err);
+        })
+      );
   }
 
-  UpdateEmployee(id: number, employee: Employee): Observable<Employee> {
+  updateEmployee(employee: Employee): Observable<Employee> {
     return this.httpClient
-      .put<Employee>(`${this.apiConnectionString}/${id}`, employee)
+      .put<Employee>(`${this.apiConnectionString}/${employee.id}`, employee)
       .pipe(
         catchError((err: Error) => {
           console.error(`An error occurred: ${err.message}`);

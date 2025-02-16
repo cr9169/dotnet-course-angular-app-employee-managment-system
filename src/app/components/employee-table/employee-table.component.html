@@ -8,6 +8,7 @@
       <th>Phone</th>
       <th>Email</th>
       <th>Position</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,10 @@
       <td>{{ employee.phoneNumber }}</td>
       <td>{{ employee.email }}</td>
       <td>{{ employee.position }}</td>
+      <td>
+        <button (click)="onDeleteEmployee(employee.id)">Delete</button>
+        <button (click)="onEditEmployee(employee.id)">Edit</button>
+      </td>
     </tr>
     }
   </tbody>

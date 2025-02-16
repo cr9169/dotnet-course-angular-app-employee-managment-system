@@ -1,4 +1,9 @@
-<h2>Create Employee</h2>
+<h2>{{ isEditing ? "Edit" : "Create" }} Employee</h2>
+
+@if(errorMessage !== "") {
+<div>{{ errorMessage }}</div>
+}
+
 <form (ngSubmit)="onSubmit()">
   <div>
     <label>First Name</label>
